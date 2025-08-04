@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>CampusBridge - 你的视野小屋</title>
     <script src="https://cdn.tailwindcss.com/3.3.3"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -67,14 +70,14 @@
         }
         
         .mobile-menu {
-            position: absolute;
-            top: 100%;
+            position: fixed;
+            top: 70px;
             left: 0;
             right: 0;
-            padding: 1rem;
+            padding: 1.5rem;
             margin: 0.5rem;
             border-radius: 0.75rem;
-            background: rgba(30, 30, 30, 0.95);
+            background: rgba(30, 30, 30, 0.98);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -82,7 +85,16 @@
             transform: scaleY(0);
             opacity: 0;
             transition: transform 0.3s ease, opacity 0.3s ease;
-            z-index: 100;
+            z-index: 9999;
+        }
+        .mobile-menu a {
+            display: block;
+            padding: 0.75rem 0;
+            margin: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .mobile-menu a:last-child {
+            border-bottom: none;
         }
         
         .mobile-menu.active {
@@ -154,7 +166,7 @@
         .project-icon {
             font-size: 24px;
             margin-right: 12px;
-            color: #6C63FF;
+            @apply text-purple-500;
         }
         /* 高级模态框样式 */
     #custom-modal {
@@ -179,7 +191,7 @@
 </style>
 </head>
 <body class="min-h-screen grid-bg">
-    <div id="particles-js"></div>
+    <!-- 粒子背景在移动端已禁用 -->
 
     <!-- 导航条 -->
     <nav class="fixed top-0 left-0 right-0 z-50 p-4 transition-all duration-300" id="mainNav">
@@ -187,7 +199,7 @@
             <div class="text-xl font-bold text-purple-400">
                 <i class="fas fa-university mr-2 text-purple-400"></i>CampusBridge
             </div>
-            <div class="hidden md:flex space-x-6">
+            <div class="hidden md:flex space-x-4 sm:space-x-6">
                 <a href="#projects" class="text-gray-400 hover:text-white transition-colors">五大项目</a>
                 <a href="#founder" class="text-gray-400 hover:text-white transition-colors">发起人</a>
                 <a href="#contact" class="gold-button px-4 py-2 rounded-full">咨询学长</a>
@@ -210,7 +222,7 @@
     </nav>
 
     <!-- 头部横幅 -->
-    <header class="pt-32 pb-24 px-4 md:px-8 relative">
+    <header class="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 md:px-8 relative">
         <div class="container mx-auto max-w-6xl text-center fade-in">
             <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
                 Campus<span class="text-purple-500">Bridge</span>
@@ -233,14 +245,14 @@
             <h2 class="text-3xl font-bold mb-6 text-center text-white section-title">视野小屋<span>核心项目</span></h2>
 
             <!-- 社区初心模块 -->
-            <div class="glassmorphism-dark p-8 rounded-lg mb-12 fade-in" style="animation-delay: 0.1s;">
+            <div class="glassmorphism-dark p-4 sm:p-8 rounded-lg mb-12 fade-in" style="animation-delay: 0.1s;">
                 <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
                     <div class="flex items-center">
                         <i class="fas fa-heart text-purple-500 text-3xl mr-4"></i>
                         <h3 class="text-2xl font-semibold text-white">社区初心</h3>
                     </div>
                     <div class="h-12 w-1 bg-gradient-to-b from-purple-500 to-blue-500 rounded-full hidden md:block"></div>
-                    <p class="text-sm text-gray-400 italic max-w-md">
+                    <p class="text-sm text-gray-400 italic max-w-[90vw] sm:max-w-md">
                         "教育不是灌满一桶水，而是点燃一把火"
                     </p>
                 </div>
@@ -516,108 +528,109 @@
 
     <script>
         // 粒子背景初始化
-        particlesJS("particles-js", {
-            "particles": {
-                "number": {
-                    "value": 80,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": "#FFFFFF"
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    }
-                },
-                "opacity": {
-                    "value": 0.5,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 40,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#FFFFFF",
-                    "opacity": 0.4,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 3,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "grab"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 140,
-                        "line_linked": {
-                            "opacity": 1
-                        }
-                    },
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 8,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 200,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    },
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
-            },
-            "retina_detect": true
-        });
+        // 粒子背景在移动端已禁用
+        // particlesJS("particles-js", {
+        //     "particles": {
+        //         "number": {
+        //             "value": 80,
+        //             "density": {
+        //                 "enable": true,
+        //                 "value_area": 800
+        //             }
+        //         },
+        //         "color": {
+        //             "value": "#FFFFFF"
+        //         },
+        //         "shape": {
+        //             "type": "circle",
+        //             "stroke": {
+        //                 "width": 0,
+        //                 "color": "#000000"
+        //             }
+        //         },
+        //         "opacity": {
+        //             "value": 0.5,
+        //             "random": false,
+        //             "anim": {
+        //                 "enable": false,
+        //                 "speed": 1,
+        //                 "opacity_min": 0.1,
+        //                 "sync": false
+        //             }
+        //         },
+        //         "size": {
+        //             "value": 3,
+        //             "random": true,
+        //             "anim": {
+        //                 "enable": false,
+        //                 "speed": 40,
+        //                 "size_min": 0.1,
+        //                 "sync": false
+        //             }
+        //         },
+        //         "line_linked": {
+        //             "enable": true,
+        //             "distance": 150,
+        //             "color": "#FFFFFF",
+        //             "opacity": 0.4,
+        //             "width": 1
+        //         },
+        //         "move": {
+        //             "enable": true,
+        //             "speed": 3,
+        //             "direction": "none",
+        //             "random": false,
+        //             "straight": false,
+        //             "out_mode": "out",
+        //             "bounce": false,
+        //             "attract": {
+        //                 "enable": false,
+        //                 "rotateX": 600,
+        //                 "rotateY": 1200
+        //             }
+        //         }
+        //     },
+        //     "interactivity": {
+        //         "detect_on": "canvas",
+        //         "events": {
+        //             "onhover": {
+        //                 "enable": true,
+        //                 "mode": "grab"
+        //             },
+        //             "onclick": {
+        //                 "enable": true,
+        //                 "mode": "push"
+        //             },
+        //             "resize": true
+        //         },
+        //         "modes": {
+        //             "grab": {
+        //                 "distance": 140,
+        //                 "line_linked": {
+        //                     "opacity": 1
+        //                 }
+        //             },
+        //             "bubble": {
+        //                 "distance": 400,
+        //                 "size": 40,
+        //                 "duration": 2,
+        //                 "opacity": 8,
+        //                 "speed": 3
+        //             },
+        //             "repulse": {
+        //                 "distance": 200,
+        //                 "duration": 0.4
+        //             },
+        //             "push": {
+        //                 "particles_nb": 4
+        //             },
+        //             "remove": {
+        //                 "particles_nb": 2
+        //             }
+        //         }
+        //     },
+        //     "retina_detect": true
+        // });
 
         // MindStorm参与人数增长曲线图
         const mindstormChart = document.getElementById('mindstormChart');
@@ -733,7 +746,7 @@
     <!-- 高级模态框 -->
     <div id="custom-modal" class="fixed inset-0 z-50 hidden">
         <div class="absolute inset-0 bg-black/20 backdrop-blur-sm" onclick="closeModal()"></div>
-        <div class="relative mx-auto mt-32 max-w-md rounded-xl bg-gradient-to-br from-gray-600 to-gray-700 p-8 shadow-xl shadow-purple-500/40 border-2 border-white ring-2 ring-white/20 outline outline-white/30 outline-offset-2 transition-all duration-300 text-center transform hover:scale-[1.02] hover:shadow-purple-500/50">
+        <div class="relative mx-auto my-auto max-w-md rounded-xl bg-gradient-to-br from-gray-600 to-gray-700 p-8 shadow-xl shadow-purple-500/40 border-2 border-white ring-2 ring-white/20 outline outline-white/30 outline-offset-2 transition-all duration-300 text-center transform hover:scale-[1.02] hover:shadow-purple-500/50">
             <button class="absolute right-4 top-4 text-2xl text-white hover:text-gray-300 transition-colors" onclick="closeModal()">&times;</button>
             <h3 id="modal-title" class="mb-4 text-2xl font-bold text-white"></h3>
             <p id="modal-content" class="text-lg text-white"></p>
